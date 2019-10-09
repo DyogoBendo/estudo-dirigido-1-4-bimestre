@@ -99,60 +99,16 @@ void MegaSena(){
         cout << "Escolha quantos numeros deseja jogar: ";
         cin >> opcao;
 
-        switch(opcao){
-            case 6:
-                GeradorAleatorios(numerosAleatorios, 6, 60);
+        for(int j = 6; j<=15; j++){
+            if(opcao == j){
+                GeradorAleatorios(numerosAleatorios,j, 60);
                 imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(6 , listaDePrecos);
+                precoPagar += calcularPreco(j, listaDePrecos);
                 break;
-            case 7:
-                GeradorAleatorios(numerosAleatorios, 7, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(7, listaDePrecos);
-                break;
-            case 8:
-                GeradorAleatorios(numerosAleatorios, 8, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(8, listaDePrecos);
-                break;
-            case 9:
-                GeradorAleatorios(numerosAleatorios, 9, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(9, listaDePrecos);
-                break;
-            case 10:
-                GeradorAleatorios(numerosAleatorios, 10, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(10, listaDePrecos);
-                break;
-            case 11:
-                GeradorAleatorios(numerosAleatorios, 11, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(11, listaDePrecos);
-                break;
-            case 12:
-                GeradorAleatorios(numerosAleatorios, 12, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(12, listaDePrecos);
-                break;
-            case 13:
-                GeradorAleatorios(numerosAleatorios, 13, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(13, listaDePrecos);
-                break;
-            case 14:
-                GeradorAleatorios(numerosAleatorios, 14, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(14, listaDePrecos);
-                break;
-            case 15:
-                GeradorAleatorios(numerosAleatorios, 15, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(15, listaDePrecos);
-                break;
-        }
+            }
+        
         numerosAleatorios.clear();
     }
 
-    cout << "A valor a ser pago = " << precoPagar << endl;
+    cout << "A valor a ser pago = R$ " << precoPagar << endl;
 }
