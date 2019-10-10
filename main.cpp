@@ -16,11 +16,13 @@ void Quina();
 void Lotomania();
 void Lotofacil();
 void Inicio();
+int Fim(){
+    return 0;
+}
 
 int main() {
 
     Inicio();
-   
 
     return 0;
 }
@@ -29,15 +31,18 @@ int main() {
 
 void Inicio()
 {
+    system ("clear");
     int modalidade;
-    system("cls");
     cout << setw(25) << "SEJA BEM-VINDO AO SORTEADOR DE LOTERIA" << endl << endl;
     cout << "Escolha uma modalidade:" << endl << endl;
     cout << "[1] Mega Sena" << endl <<
          "[2] Quina" << endl <<
          "[3] Lotomania" << endl <<
-         "[4] Lotofacil" << endl; 
+         "[4] Lotofacil" << endl <<
+         "[0] Sair" << endl;
     cin >> modalidade; 
+    
+    system ("clear");
     
     if (modalidade == 1)
     {
@@ -59,6 +64,11 @@ void Inicio()
         Lotofacil();    
     }
     
+    else if (modalidade == 0)
+    {
+        Fim();
+    }
+    
     else
     {
         Inicio();
@@ -67,7 +77,7 @@ void Inicio()
 }
 
 void imprimirOpcoes(int inicio, int final, vector <double> listaPrecos){
-    cout << "QTD DE JOGADAS: " << setw(50) << "PREÇO: " << endl;
+    cout << "QTD DE DEZENAS: " << setw(50) << "PREÇO: " << endl;
     cout << fixed << setprecision(2);
     for(int i = inicio, j = 0; i<=final; i++, j++){
         cout << i << setw(50) << "R$ " << listaPrecos[j] << endl;
@@ -85,6 +95,7 @@ void imprimirNumeros(vector <int> numeros){
     }
     cout << endl;
 }
+
 double calcularPreco( int QTDNumeros, vector <double> listaPrecos){
     double preco = 0;
     double QTDNumeros1 = QTDNumeros - 6;
@@ -134,19 +145,105 @@ void MegaSena(){
     cin >> cartelas;
 
     for(int i = 0; i<cartelas; i++){
-        cout << "Escolha quantos numeros deseja jogar: ";
+        cout << "Escolha quantos dezenas deseja jogar: ";
         cin >> opcao;
+        while (opcao < 6 || opcao > 15)
+        {
+            cout << "Digite um valor válido: ";
+            cin >> opcao;
+        }
 
-        for(int j = 6; j<=15; j++){
-            if(opcao == j){
-                GeradorAleatorios(numerosAleatorios,j, 60);
-                imprimirNumeros(numerosAleatorios);
-                precoPagar += calcularPreco(j, listaDePrecos);
-                break;
-            }
+        GeradorAleatorios(numerosAleatorios,opcao, 60);
+        imprimirNumeros(numerosAleatorios);
+        precoPagar += calcularPreco(opcao, listaDePrecos);
         
         numerosAleatorios.clear();
     }
 
     cout << "A valor a ser pago = R$ " << precoPagar << endl;
+}
+
+void Quina(){
+    vector <double> listaDePrecos = {1.50, 9, 31.50, 84, 189, 378, 693, 1188, 1930.50, 3003, 4505.50};
+    vector <int> numerosAleatorios;
+    numerosAleatorios.clear();
+    int opcao, cartelas;
+    double precoPagar = 0;
+
+    imprimirOpcoes(5,15, listaDePrecos);
+    cout << endl << "Escolha quantos cartelas deseja jogar: ";
+    cin >> cartelas;
+
+    for(int i = 0; i<cartelas; i++){
+        cout << "Escolha quantos dezenas deseja jogar: ";
+        cin >> opcao;
+        while (opcao < 5 || opcao > 15)
+        {
+            cout << "Digite um valor válido: ";
+            cin >> opcao ;
+        }
+
+        GeradorAleatorios(numerosAleatorios,opcao, 80);
+        imprimirNumeros(numerosAleatorios);
+        precoPagar += calcularPreco(opcao, listaDePrecos);
+        
+        numerosAleatorios.clear();
+    }
+
+    cout << "A valor a ser pago = R$ " << precoPagar << endl;
+}
+
+void Lotomania(){
+    vector <double> listaDePrecos = {1.50};
+    vector <int> numerosAleatorios;
+    numerosAleatorios.clear();
+    int opcao, cartelas;
+    double precoPagar = 0;
+
+    imprimirOpcoes(50,50, listaDePrecos);
+    cout << endl << "Escolha quantos cartelas deseja jogar: ";
+    cin >> cartelas;
+
+    for(int i = 0; i<cartelas; i++){
+        
+        GeradorAleatorios(numerosAleatorios,50, 100);
+        imprimirNumeros(numerosAleatorios);
+        precoPagar += calcularPreco(50, listaDePrecos);
+        
+        numerosAleatorios.clear();
+    }
+
+    cout << "A valor a ser pago = R$ " << precoPagar << endl;
+}
+
+void Lotofacil(){
+    
+    vector <double> listaDePrecos = {2, 32, 272, 1632};
+    vector <int> numerosAleatorios;
+    numerosAleatorios.clear();
+    int opcao, cartelas;
+    double precoPagar = 0;
+
+    imprimirOpcoes(15,18, listaDePrecos);
+    cout << endl << "Escolha quantos cartelas deseja jogar: ";
+    cin >> cartelas;
+
+    for(int i = 0; i<cartelas; i++){
+        cout << "Escolha quantos dezenas deseja jogar: ";
+        cin >> opcao;
+        while (opcao < 15 || opcao > 18)
+        {
+            cout << "Digite um valor válido: ";
+            cin >> opcao;
+        }
+
+        GeradorAleatorios(numerosAleatorios,opcao, 25);
+        imprimirNumeros(numerosAleatorios);
+        precoPagar += calcularPreco(opcao, listaDePrecos);
+        
+        numerosAleatorios.clear();
+    }
+
+    cout << "A valor a ser pago = R$ " << precoPagar << endl << endl;
+    
 }
