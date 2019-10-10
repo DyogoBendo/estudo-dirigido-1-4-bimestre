@@ -15,15 +15,56 @@ void MegaSena();
 void Quina();
 void Lotomania();
 void Lotofacil();
+void Inicio();
 
 int main() {
 
-    MegaSena();
+    Inicio();
+   
 
     return 0;
 }
 
 // Passando as instruções para as funções
+
+void Inicio()
+{
+    int modalidade;
+    system("cls");
+    cout << setw(25) << "SEJA BEM-VINDO AO SORTEADOR DE LOTERIA" << endl << endl;
+    cout << "Escolha uma modalidade:" << endl << endl;
+    cout << "[1] Mega Sena" << endl <<
+         "[2] Quina" << endl <<
+         "[3] Lotomania" << endl <<
+         "[4] Lotofacil" << endl; 
+    cin >> modalidade; 
+    
+    if (modalidade == 1)
+    {
+        MegaSena();   
+    }
+    
+    else if (modalidade == 2)
+    {
+        Quina();
+    }
+    
+    else if (modalidade == 3)
+    {
+        Lotomania();   
+    }
+    
+    else if (modalidade == 4)
+    {
+        Lotofacil();    
+    }
+    
+    else
+    {
+        Inicio();
+    }
+    
+}
 
 void imprimirOpcoes(int inicio, int final, vector <double> listaPrecos){
     cout << "QTD DE JOGADAS: " << setw(50) << "PREÇO: " << endl;
@@ -81,9 +122,6 @@ void GeradorAleatorios(vector <int> &numeros, int qtdNumeros, int Limite){
     }
 }
 void MegaSena(){
-
-    system("cls");
-    cout << setw(25) << "SEJA BEM-VINDO AO SORTEADOR DA MEGA-SENA" << endl << endl;
 
     vector <double> listaDePrecos = {3.50, 24.50, 90.00, 294.00, 735.00, 1617.00, 3243.00, 6006.00, 10510.00, 17517.00};
     vector <int> numerosAleatorios;
