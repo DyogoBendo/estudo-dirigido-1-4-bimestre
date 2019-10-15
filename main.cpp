@@ -54,11 +54,11 @@ void imprimirOpcoes(int inicio, int final, vector <double> listaPrecos){
     }
 }
 void imprimirNumeros(vector <int> numeros){
-    cout << "Numeros para jogar: {";
+    cout << "Numeros para jogar: |";
     for(int i = 0; i<(int)numeros.size(); i++){
        if(i < (numeros.size()/2)){
            if(i == (numeros.size()/2)-1){
-               cout << numeros[i] << "}" << endl << setw(21)<<"{";
+               cout << numeros[i] << "|" << endl << setw(21)<<"|";
            }
            else {
                cout << numeros[i] << ",";
@@ -66,7 +66,7 @@ void imprimirNumeros(vector <int> numeros){
        }
        else {
            if(i == numeros.size() - 1){
-               cout << numeros[i] << "}";
+               cout << numeros[i] << "|";
            }
            else {
                cout << numeros[i] << ",";
