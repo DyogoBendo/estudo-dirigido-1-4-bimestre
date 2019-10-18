@@ -3,11 +3,13 @@
 #include <vector>
 #include <iomanip>
 #include <random>
+#include <locale.h>
+
 
 using namespace std;
 
-std::random_device rd;
-std::mt19937 mt(rd());
+random_device rd;
+mt19937 mt(rd());
 
 bool validarRepeticao(vector <int> valores, int tamanho, int valor);
 void GeradorAleatorios(vector <int> &numeros, int qtdNumeros, int Limite);
@@ -20,56 +22,72 @@ void Quina();
 void Lotomania();
 void Lotofacil();
 
-
 int main() {
 
-    char modalidade = menu();
-    switch(modalidade){
-        case 'M':
-            MegaSena();
-            break;
-        case 'Q':
-            Quina();
-            break;
-        case 'L':
-            Lotomania();
-            break;
-        case 'F':
-            Lotofacil();
-            break;
-        case 'S':
-            exit(0);
-    }
+     cout << setw(25) << "SEJA BEM-VINDO(A) AO SORTEADOR DE LOTERIA" << endl << endl;
+
+    do{
+        char modalidade = menu();
+        switch(modalidade){
+            case 'M':
+                MegaSena();
+                break;
+            case 'Q':
+                Quina();
+                break;
+            case 'L':
+                Lotomania();
+                break;
+            case 'F':
+                Lotofacil();
+                break;
+            case 'S':
+                exit(0);
+        }
+    }while(true);
     return 0;
 }
 
 // Passando as instruções para as funções
 
+
 void imprimirOpcoes(int inicio, int final, vector <double> listaPrecos){
+
     cout << endl;
-    cout << "QTD DE DEZENAS: " << setw(50) << "PREÇO: " << endl;
+    cout << "-------------------------------------------------------------" << endl;
+    cout << "QTD DE DEZENAS: " << setw(11) << "|" << setw(28) << "PREÇO: " <<endl;
+    cout << "-------------------------------------------------------------" << endl;
     cout << fixed << setprecision(2);
     for(int i = inicio, j = 0; i<=final; i++, j++){
-        cout << i << setw(50) << "R$ " << listaPrecos[j] << endl;
+        if(i < 10){
+            cout << i << setw(26) << "|" << setw(23) << "R$ " << listaPrecos[j] << endl;
+        }
+        else {
+            cout << i << setw(25) << "|" << setw(23) << "R$ " << listaPrecos[j] <<  endl;
+        }
     }
+    cout << "-------------------------------------------------------------" << endl;
 }
 void imprimirNumeros(vector <int> numeros){
-    cout << "Numeros para jogar: |";
+
+    setlocale(LC_ALL, "Portuguese");
+
+    cout << "Numeros para jogar: | ";
     for(int i = 0; i<(int)numeros.size(); i++){
        if(i < (numeros.size()/2)){
            if(i == (numeros.size()/2)-1){
-               cout << numeros[i] << "|" << endl << setw(21)<<"|";
+               cout << numeros[i] << setw(2) << "|" << endl << setw(22)<<"| ";
            }
            else {
-               cout << numeros[i] << ",";
+               cout << numeros[i] << ", ";
            }
        }
        else {
            if(i == numeros.size() - 1){
-               cout << numeros[i] << "|";
+               cout << numeros[i] << setw(2) << "|";
            }
            else {
-               cout << numeros[i] << ",";
+               cout << numeros[i] << ", ";
            }
 
        }
@@ -123,7 +141,8 @@ void GeradorAleatorios(vector <int> &numeros, int qtdNumeros, int Limite){
 void MegaSena(){
 
     system("cls");
-    cout << setw(50) << "SEJA BEM-VINDO AO SORTEADOR DA MEGA-SENA" << endl;
+
+    cout << setw(50) << "SEJA BEM-VINDO(A) AO SORTEADOR DA MEGA-SENA" << endl;
 
     vector <double> listaDePrecos = {3.50, 24.50, 90.00, 294.00, 735.00, 1617.00, 3243.00, 6006.00, 10510.00, 17517.00};
     vector <int> numerosAleatorios;
@@ -154,13 +173,14 @@ void MegaSena(){
 
     cout << "A valor a ser pago = R$ " << precoPagar << endl;
     system("pause");
-    main();
+    system("cls");
 }
 
 void Quina(){
 
     system("cls");
-    cout << setw(50) << "SEJA BEM-VINDO AO SORTEADOR DA QUINA" << endl;
+
+    cout << setw(50) << "SEJA BEM-VINDO(A) AO SORTEADOR DA QUINA" << endl;
 
     vector <double> listaDePrecos = {1.50, 9.00, 31.50, 84, 189, 378, 693, 1188, 1930.50, 3003, 4505.50};
     vector <int> numerosAleatorios;
@@ -190,13 +210,14 @@ void Quina(){
 
     cout << "A valor a ser pago = R$ " << precoPagar << endl;
     system("pause");
-    main();
+    system("cls");
 }
 
 void Lotomania(){
 
     system("cls");
-    cout << setw(50) << "SEJA BEM-VINDO AO SORTEADOR DA LOTOMANIA" << endl;
+
+    cout << setw(50) << "SEJA BEM-VINDO(A) AO SORTEADOR DA LOTOMANIA" << endl;
 
     vector <double> listaDePrecos = {1.50};
     vector <int> numerosAleatorios;
@@ -219,13 +240,14 @@ void Lotomania(){
 
     cout << "A valor a ser pago = R$ " << precoPagar << endl;
     system("pause");
-    main();
+    system("cls");
 }
 
 void Lotofacil(){
 
     system("cls");
-    cout << setw(50) << "SEJA BEM-VINDO AO SORTEADOR DA LOTOFACIL" << endl;
+
+    cout << setw(50) << "SEJA BEM-VINDO(A) AO SORTEADOR DA LOTOFACIL" << endl;
 
     vector <double> listaDePrecos = {2, 32, 272, 1632};
     vector <int> numerosAleatorios;
@@ -255,12 +277,11 @@ void Lotofacil(){
 
     cout << "A valor a ser pago = R$ " << precoPagar << endl << endl;
     system("pause");
-    main();
+    system("cls");
 }
 char menu(){
 
     char modalidade;
-    cout << setw(25) << "SEJA BEM-VINDO AO SORTEADOR DE LOTERIA" << endl << endl;
     cout << "Escolha uma modalidade:" << endl << endl;
     cout << "[M] Mega Sena" << endl <<
          "[Q] Quina" << endl <<
